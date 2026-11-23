@@ -1,0 +1,26 @@
+@inherits LayoutComponentBase
+
+<header class="site-header">
+    <a class="brand" href="/">Wypożyczalnia<span class="brand-dot">.</span></a>
+    <nav aria-label="Nawigacja główna">
+        <NavLink href="/" Match="NavLinkMatch.All">Moje konto</NavLink>
+        <AuthorizeView Roles="@AppRoles.Admin">
+            <NavLink href="/admin">Administracja</NavLink>
+        </AuthorizeView>
+    </nav>
+    <AuthorizeView>
+        <Authorized>
+            <form action="/Account/Logout" method="post" data-enhance="false">
+                <AntiforgeryToken />
+                <button class="button secondary" type="submit">Wyloguj się</button>
+            </form>
+        </Authorized>
+    </AuthorizeView>
+</header>
+<main class="page-content">@Body</main>
+<footer class="site-footer">Wypożyczalnia sprzętu elektronicznego</footer>
+
+<div id="blazor-error-ui" role="alert">
+    Utracono połączenie lub wystąpił błąd. <a href="" class="reload">Odśwież stronę</a>
+    <button class="dismiss" aria-label="Zamknij">×</button>
+</div>

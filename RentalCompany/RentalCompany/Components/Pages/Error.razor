@@ -1,0 +1,18 @@
+@page "/Error"
+@attribute [AllowAnonymous]
+@using System.Diagnostics
+
+<PageTitle>Błąd — Wypożyczalnia</PageTitle>
+<h1>Nie udało się wykonać operacji</h1>
+<p>Spróbuj ponownie. Jeśli problem się powtarza, przekaż administratorowi identyfikator błędu.</p>
+@if (requestId is not null)
+{
+    <p class="muted">Identyfikator: <code>@requestId</code></p>
+}
+<a href="/">Wróć do strony głównej</a>
+
+@code {
+    [CascadingParameter] private HttpContext? HttpContext { get; set; }
+    private string? requestId;
+    protected override void OnInitialized() => requestId = Activity.Current?.Id ?? HttpContext?.TraceIdentifier;
+}

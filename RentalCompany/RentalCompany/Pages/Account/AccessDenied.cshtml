@@ -1,0 +1,9 @@
+@page
+@{
+    ViewData["Title"] = "Brak dostępu";
+    Response.StatusCode = 403;
+}
+<p class="eyebrow">BRAK UPRAWNIEŃ</p>
+<h1>Ta strona jest niedostępna</h1>
+<p class="muted">Konto nie ma uprawnień do wyświetlenia tej części aplikacji.</p>
+<a href="/" class="button primary">Wróć do strony głównej</a>

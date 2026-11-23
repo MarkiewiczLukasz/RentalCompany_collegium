@@ -1,0 +1,26 @@
+@page
+@model RentalCompany.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Logowanie";
+}
+<p class="eyebrow">SPRZĘT NA TWOICH ZASADACH</p>
+<h1>Witaj ponownie</h1>
+<p class="muted">Zaloguj się, aby przejść do wypożyczalni.</p>
+
+<form method="post" asp-page="/Account/Login" class="login-form">
+    <input type="hidden" asp-for="ReturnUrl" />
+    <div asp-validation-summary="ModelOnly" class="message error" role="alert"></div>
+    <div class="field">
+        <label asp-for="Email">Adres e-mail</label>
+        <input asp-for="Email" type="email" autocomplete="username" maxlength="254" required autofocus placeholder="nazwa@przyklad.pl" />
+        <span asp-validation-for="Email" class="validation-message"></span>
+    </div>
+    <div class="field">
+        <label asp-for="Password">Hasło</label>
+        <input asp-for="Password" type="password" autocomplete="current-password" maxlength="1024" required />
+        <span asp-validation-for="Password" class="validation-message"></span>
+    </div>
+    <label class="checkbox"><input asp-for="RememberMe" /> Zapamiętaj mnie na tym urządzeniu</label>
+    <button class="button primary" type="submit">Zaloguj się <span aria-hidden="true">→</span></button>
+</form>
+<p class="account-note">Dostęp do aplikacji wymaga konta utworzonego przez administratora.</p>

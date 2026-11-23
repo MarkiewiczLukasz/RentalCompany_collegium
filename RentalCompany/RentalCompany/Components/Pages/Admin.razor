@@ -1,0 +1,32 @@
+@page "/admin"
+@attribute [Authorize(Roles = AppRoles.Admin)]
+@inject IUserAccess UserAccess
+
+<PageTitle>Administracja — Wypożyczalnia</PageTitle>
+<p class="eyebrow">STREFA ADMINISTRATORA</p>
+<h1>Administracja</h1>
+@if (error is not null)
+{
+    <p class="message error" role="alert">@error</p>
+    <a href="/Account/Login" data-enhance-nav="false">Przejdź do logowania</a>
+}
+else
+{
+    <section class="panel">
+        <h2>Panel zarządzania</h2>
+        <p class="muted">Obsługa sprzętu, wydań, zwrotów i napraw zostanie dodana w kolejnym etapie.</p>
+    </section>
+}
+
+@code {
+    private string? error;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await UserAccess.RequireAdminAsync();
+        }
+        catch (UnauthorizedAccessException exception) { error = exception.Message; }
+    }
+}

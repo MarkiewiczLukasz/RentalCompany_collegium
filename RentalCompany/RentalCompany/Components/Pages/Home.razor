@@ -1,0 +1,40 @@
+@page "/"
+@attribute [Authorize]
+@inject IUserAccess UserAccess
+
+<PageTitle>Moje konto — Wypożyczalnia</PageTitle>
+<p class="eyebrow">TWOJA WYPOŻYCZALNIA</p>
+<h1>Moje konto</h1>
+
+@if (error is not null)
+{
+    <p class="message error" role="alert">@error</p>
+    <a href="/Account/Login" data-enhance-nav="false">Przejdź do logowania</a>
+}
+else if (user is not null)
+{
+    <p class="lead">Witaj, @user.Email</p>
+    <section class="panel" aria-labelledby="account-heading">
+        <div class="panel-heading">
+            <h2 id="account-heading">Dostęp do aplikacji</h2>
+            <span class="badge">@string.Join(", ", user.Roles)</span>
+        </div>
+        <p>Logowanie przebiegło pomyślnie.</p>
+        <p class="muted">Katalog sprzętu i obsługa wypożyczeń pojawią się w kolejnym etapie projektu.</p>
+        @if (user.Roles.Contains(AppRoles.Admin))
+        {
+            <a class="button primary" href="/admin">Przejdź do administracji →</a>
+        }
+    </section>
+}
+
+@code {
+    private CurrentUser? user;
+    private string? error;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try { user = await UserAccess.RequireUserAsync(); }
+        catch (UnauthorizedAccessException exception) { error = exception.Message; }
+    }
+}

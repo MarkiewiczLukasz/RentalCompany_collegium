@@ -1,0 +1,40 @@
+# Wyniki kompilacji i publikacji .NET
+[Bb]in/
+[Oo]bj/
+[Aa]rtifacts/
+[Pp]ublish/
+*.binlog
+*.nupkg
+*.snupkg
+
+# Lokalne ustawienia i cache Visual Studio / Rider
+.vs/
+.idea/
+*.user
+*.suo
+*.rsuser
+*.userosscache
+*.sln.docstates
+*.sln.iml
+
+# Wyniki testów i raporty pokrycia kodu
+[Tt]est[Rr]esults/
+[Cc]overage/
+*.trx
+*.coverage
+*.coveragexml
+coverage.cobertura.xml
+coverage.opencover.xml
+
+# Lokalna konfiguracja środowiska
+.env
+.env.*
+
+# Logi, pliki tymczasowe i metadane systemowe
+*.log
+*.tmp
+*.bak
+*~
+Thumbs.db
+Desktop.ini
+.DS_Store
